@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Устанавливаем зависимости
+      - name: Setup
+        run: make setup
+
+      # Запускаем тесты
+      - name: Test
+        run: make test
+
+      # Запускаем линтер
+      - name: Lint
+        run: make lint
